@@ -1,0 +1,63 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li><a href="{:url('Domain/admin_index/txy_index')}">腾讯云域名</a></li>
+        <li><a href="{:url('Domain/admin_index/txy_dns', ['id' => $info['id']])}">{$info.domain} 解析列表</a></li>
+        <li class="active"><a>{$info.domain} 添加解析</a></li>
+    </ul>
+
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('domain/admin_index/txy_dns_add_post')}">
+        <input type="hidden" name="domain_id" value="{$info.id}">
+        <div class="form-group">
+            <label for="input-type" class="col-sm-2 control-label">记录类型</label>
+            <div class="col-md-6 col-sm-10">
+                <select class="form-control" id="input-type" name="type">
+                    <option value="A">A记录 - 将域名指向一个IPV4地址</option>
+                    <option value="CNAME">CNAME记录 - 将域名指向另外一个域名</option>
+                    <option value="AAAA">AAAA记录 - 将域名指向一个IPV6地址</option>
+                    <option value="NS">NS记录 - 将子域名指定其他DNS服务器解析</option>
+                    <option value="MX">MX记录 - 将域名指向邮件服务器地址</option>
+                    <option value="SRV">SRV记录 - 记录提供特定的服务的服务器</option>
+                    <option value="TXT">TXT记录 - 文本长度限制512，通常做SPF记录（反垃圾邮件）</option>
+                    <option value="CAA">CAA记录 - CA证书颁发机构授权校验</option>
+                    <option value="REDIRECT_URL">显性URL - 将域名重定向到另外一个地址</option>
+                    <option value="FORWARD_URL">隐性URL - 与显性URL类似，但是会隐藏真实目标地址</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-sub_domain" class="col-sm-2 control-label">主机记录</label>
+            <div class="col-md-6 col-sm-10" style="display: flex; align-items: center; gap: 10px;">
+                <input type="text" class="form-control" id="input-sub_domain" name="sub_domain" value="">.{$info.domain}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-value" class="col-sm-2 control-label">记录值</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-value" name="value" value="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-ttl" class="col-sm-2 control-label">TTL</label>
+            <div class="col-md-6 col-sm-10">
+                <select type="text" class="form-control" id="input-ttl" name="ttl">
+                    <option value="600">10分钟</option>
+                    <option value="1800">30分钟</option>
+                    <option value="3600">1小时</option>
+                    <option value="43200">12小时</option>
+                    <option value="86400">1天</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js?v={$_static_version}"></script>
+</body>
+</html>

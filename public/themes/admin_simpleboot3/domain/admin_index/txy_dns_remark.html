@@ -1,0 +1,22 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('domain/admin_index/txy_dns_remark_post')}">
+        <input type="hidden" name="id" value="{$info.id}">
+        <div class="form-group">
+            <label for="input-user_login" class="col-sm-2 control-label">备注</label>
+            <div class="col-md-6 col-sm-10">
+                <input type="text" class="form-control" id="input-user_login" name="remark" value="{$info.remark}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js?v={$_static_version}"></script>
+</body>
+</html>

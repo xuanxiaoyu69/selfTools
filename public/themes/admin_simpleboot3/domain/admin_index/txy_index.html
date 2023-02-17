@@ -1,0 +1,40 @@
+<include file="public@header"/>
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a>腾讯云域名</a></li>
+    </ul>
+
+    <form class="well form-inline js-ajax-form margin-top-20" method="post" action="{:url('domain/AdminIndex/txy_update')}">
+        <button class="btn btn-success js-ajax-submit" type="submit">更新</button>
+    </form>
+
+    <form method="post" class="js-ajax-form">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>{:lang('domain_name')}</th>
+                <th>{:lang('ACTIONS')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.domain}</td>
+                    <td>
+                        <a href="{:url('domain/AdminIndex/txy_dns_add', ['domain_id' => $vo['id']])}" class="btn btn-xs btn-success">解析</a>
+                        <a href="{:url('domain/AdminIndex/txy_dns', ['id' => $vo['id']])}" class="btn btn-xs btn-warning">解析列表</a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div class="pagination">{$list->render()}</div>
+    </form>
+</div>
+<script src="__STATIC__/js/admin.js?v={$_static_version}"></script>
+</body>
+</html>
