@@ -1,9 +1,8 @@
 # 二次开发可以更新或删除此文件
-*
+
 !.gitignore
 !/plugins
-!/static
-!/themes
+/static
 !/upload
 !.htaccess
 !api.php
