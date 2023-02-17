@@ -26,14 +26,14 @@ class MigrationAppDomainCreateDomainDnsTable extends Migrator
      */
     public function change()
     {
-        $this->table('domain_dns')
-            ->addColumn('domain_id', 'integer')
-            ->addColumn('dns_id', 'string')
-            ->addColumn('sub_domain', 'string')
-            ->addColumn('type', 'string')
-            ->addColumn('value', 'string')
+        $this->table('domain_dns', ['signed' => false, 'comment' => '子域名表'])
+            ->addColumn('domain_id', 'integer', ['comment' => '主域名表id'])
+            ->addColumn('dns_id', 'string', ['comment' => '运营商处子域名id'])
+            ->addColumn('sub_domain', 'string', ['comment' => '子域名'])
+            ->addColumn('type', 'string', ['comment' => '解析类型'])
+            ->addColumn('value', 'string', ['comment' => '解析值'])
             ->addColumn('ttl', 'integer')
-            ->addColumn('status', 'integer')
+            ->addColumn('status', 'integer', ['comment' => '解析状态'])
             ->addColumn('remark', 'string', ['null' => true])
             ->create();
     }

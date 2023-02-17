@@ -26,10 +26,10 @@ class MigrationAppDomainCreateDomainTable extends Migrator
      */
     public function change()
     {
-        $this->table('domain')
-            ->addColumn('domain', 'string')
-            ->addColumn('type', 'integer')
-            ->addColumn('domain_id', 'string')
+        $this->table('domain', ['signed' => false, 'comment' => '主域名表'])
+            ->addColumn('domain', 'string', ['comment' => '主域名'])
+            ->addColumn('type', 'integer', ['comment' => '运营商类型 1阿里云 2腾讯云'])
+            ->addColumn('domain_id', 'string', ['comment' => '运营商处域名id'])
             ->create();
     }
 }
